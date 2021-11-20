@@ -3,6 +3,9 @@ VERSION=$(shell git describe --tags --always)
 INTERNAL_PROTO_FILES=$(shell find internal -name *.proto)
 API_PROTO_FILES=$(shell find api -name *.proto)
 
+IMAGE_NAME = registry.cn-hangzhou.aliyuncs.com/walkman/kratos-demo
+IMAGE_VERSION = 0.0.1
+
 .PHONY: init
 # init env
 init:
@@ -48,6 +51,22 @@ build:
 # generate
 generate:
 	go generate ./...
+
+.PHONY: build start push
+
+build-image: build-version
+
+build-version:
+	docker build -t ${IMAGE_NAME}:${IMAGE_VERSION} .
+
+tag-latest:
+	docker tag ${IMAGE_NAME}:${IMAGE_VERSION} ${IMAGE_NAME}:latest
+
+start:
+	docker run -it --rm ${IMAGE_NAME}:${IMAGE_VERSION} /bin/bash
+
+push: build-version tag-latest
+	docker push ${IMAGE_NAME}:${IMAGE_VERSION}; docker push ${IMAGE_NAME}:latest
 
 .PHONY: all
 # generate all
