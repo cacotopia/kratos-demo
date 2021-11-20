@@ -10,12 +10,7 @@ ENV GO111MODULE=on \
     GOARCH=amd64 \
 	GOPROXY="https://goproxy.cn,direct"
 
-RUN bash -c "go get github.com/golang/protobuf/{proto,protoc-gen-go}"
-RUN bash -c "go get -u github.com/go-kratos/kratos/cmd/kratos/v2@latest"
-
-RUN GOPROXY=https://goproxy.cn 
-
-RUN make build
+RUN GOPROXY=https://goproxy.cn make build
 
 FROM debian:stable-slim
 
@@ -29,8 +24,8 @@ COPY --from=builder /src/bin /app
 
 WORKDIR /app
 
-EXPOSE 8080
-EXPOSE 9080
+EXPOSE 8000
+EXPOSE 9000
 VOLUME /data/conf
 
 CMD ["./server", "-conf", "/data/conf"]
