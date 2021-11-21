@@ -67,7 +67,16 @@ Thumbs.db
 *.log
 bin/
 
+<<<<<<< HEAD
 # Develop tools
 .vscode/
 .idea/
 *.swp
+=======
+# Ionide (cross platform F# VS Code tools) working folder
+.ionide/
+
+
+# Ignore DevSpace cache and log folder
+.devspace/
+>>>>>>> 44291340c927b8ff210d44e9116905985bdf2067

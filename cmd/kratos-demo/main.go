@@ -60,6 +60,11 @@ func main() {
 			file.NewSource(flagconf),
 		),
 	)
+<<<<<<< HEAD
+=======
+	defer c.Close()
+
+>>>>>>> 44291340c927b8ff210d44e9116905985bdf2067
 	if err := c.Load(); err != nil {
 		panic(err)
 	}

@@ -3,12 +3,24 @@ VERSION=$(shell git describe --tags --always)
 INTERNAL_PROTO_FILES=$(shell find internal -name *.proto)
 API_PROTO_FILES=$(shell find api -name *.proto)
 
+<<<<<<< HEAD
 .PHONY: init
 # init env
 init:
 	go get -u github.com/go-kratos/kratos/cmd/kratos/v2
 	go get -u google.golang.org/protobuf/cmd/protoc-gen-go
 	go get -u google.golang.org/grpc/cmd/protoc-gen-go-grpc
+=======
+IMAGE_NAME = registry.cn-hangzhou.aliyuncs.com/walkman/kratos-demo
+IMAGE_VERSION = 0.0.1
+
+.PHONY: init
+# init env
+init:
+    go get -u google.golang.org/protobuf/cmd/protoc-gen-go
+	go get -u google.golang.org/grpc/cmd/protoc-gen-go-grpc
+	go get -u github.com/go-kratos/kratos/cmd/kratos/v2
+>>>>>>> 44291340c927b8ff210d44e9116905985bdf2067
 	go get -u github.com/go-kratos/kratos/cmd/protoc-gen-go-http/v2
 	go get -u github.com/go-kratos/kratos/cmd/protoc-gen-go-errors/v2
 
@@ -49,6 +61,25 @@ build:
 generate:
 	go generate ./...
 
+<<<<<<< HEAD
+=======
+.PHONY: build start push
+
+build-image: build-version
+
+build-version:
+	docker build -t ${IMAGE_NAME}:${IMAGE_VERSION} .
+
+tag-latest:
+	docker tag ${IMAGE_NAME}:${IMAGE_VERSION} ${IMAGE_NAME}:latest
+
+start:
+	docker run -it --rm ${IMAGE_NAME}:${IMAGE_VERSION} /bin/bash
+
+push: build-version tag-latest
+	docker push ${IMAGE_NAME}:${IMAGE_VERSION}; docker push ${IMAGE_NAME}:latest
+
+>>>>>>> 44291340c927b8ff210d44e9116905985bdf2067
 .PHONY: all
 # generate all
 all:
