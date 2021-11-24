@@ -4,10 +4,7 @@ import (
 	v1 "kratos-demo/api/helloworld/v1"
 	"kratos-demo/internal/conf"
 	"kratos-demo/internal/service"
-<<<<<<< HEAD
 
-=======
->>>>>>> 44291340c927b8ff210d44e9116905985bdf2067
 	"github.com/go-kratos/kratos/v2/log"
 	"github.com/go-kratos/kratos/v2/middleware/recovery"
 	"github.com/go-kratos/kratos/v2/transport/grpc"
