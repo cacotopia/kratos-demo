@@ -1,16 +1,9 @@
 server:
   http:
-<<<<<<< HEAD
-    addr: 0.0.0.0:8000
-    timeout: 1s
-  grpc:
-    addr: 0.0.0.0:9000
-=======
     addr: 0.0.0.0:8080
     timeout: 1s
   grpc:
     addr: 0.0.0.0:9080
->>>>>>> 44291340c927b8ff210d44e9116905985bdf2067
     timeout: 1s
 data:
   database:
